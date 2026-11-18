@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sisilia Putri | Portofolio & Curriculum Vitae</title>
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Konfigurasi Warna Dominan Soft Pink & Gold -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        softpink: {
+                            50: '#fff8fa',
+                            100: '#ffeff4',
+                            200: '#ffdbe6',
+                            300: '#ffbdd1',
+                            400: '#f78fb0',
+                            500: '#e6648e',
+                            600: '#c9436f',
+                            700: '#a32c54',
+                            800: '#822243',
+                            900: '#5e162f',
+                        },
+                        gold: {
+                            50: '#fdfaf2',
+                            100: '#faf0d7',
+                            200: '#f3deaa',
+                            300: '#eac676',
+                            400: '#dfa944',
+                            500: '#c58f24',
+                            600: '#a37216',
+                            700: '#805710',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Haluskan transisi & gaya cetak (print) */
+        @media print {
+            .no-print { display: none !important; }
+            body { background-color: #ffffff !important; }
+        }
+    </style>
+</head>
+<body class="bg-softpink-50/40 text-stone-800 antialiased selection:bg-softpink-200 selection:text-softpink-900">
+
+    <!-- Notifikasi Toast Interaktif (Pengganti alert()) -->
+    <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+    <!-- HEADER & NAVIGASI -->
+    <header class="sticky top-0 z-40 w-full bg-white/90 backdrop-blur-md border-b border-softpink-200/80 no-print">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 sm:h-20">
+                <!-- Brand / Monogram -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 rounded-xl bg-softpink-100 border-2 border-gold-400 flex items-center justify-center text-softpink-800 font-heading font-bold text-lg shadow-sm group-hover:bg-softpink-200 transition-colors">
+                        SP
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-heading font-bold text-lg tracking-tight text-stone-900 leading-none">
+                            Sisilia Putri
+                        </span>
+                        <span class="text-[11px] font-semibold text-gold-600 tracking-wider uppercase mt-0.5">
+                            Informatics &amp; Admin
+                        </span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-stone-600">
+                    <a href="#about" class="hover:text-softpink-700 transition-colors">About Me</a>
+                    <a href="#experience" class="hover:text-softpink-700 transition-colors">Experience &amp; Projects</a>
+                    <a href="#skills" class="hover:text-softpink-700 transition-colors">My Skills</a>
+                    <a href="#contact" class="hover:text-softpink-700 transition-colors">Contact</a>
+                </nav>
+
+                <!-- CTA Button Header -->
+                <div class="flex items-center gap-3">
+                    <button onclick="window.print()" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-gold-300 bg-gold-50 hover:bg-gold-100 text-stone-800 text-xs font-semibold transition-all">
+                        <i class="fas fa-file-pdf text-gold-600"></i>
+                        <span>Simpan CV</span>
+                    </button>
+                    <a href="#contact" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-softpink-600 hover:bg-softpink-700 text-white text-xs sm:text-sm font-semibold shadow-sm transition-all">
+                        <span>Hubungi Saya</span>
+                    </a>
+                    <!-- Mobile Menu Toggle -->
+                    <button id="mobile-menu-btn" aria-label="Buka Menu" class="md:hidden p-2.5 rounded-xl bg-softpink-100 text-softpink-800 hover:bg-softpink-200">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Dropdown Navigation -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-softpink-100 px-4 py-4 space-y-2 shadow-lg">
+            <a href="#about" class="block px-3 py-2.5 rounded-xl text-sm font-medium text-stone-700 hover:bg-softpink-50 hover:text-softpink-800">About Me</a>
+            <a href="#experience" class="block px-3 py-2.5 rounded-xl text-sm font-medium text-stone-700 hover:bg-softpink-50 hover:text-softpink-800">Experience &amp; Projects</a>
+            <a href="#skills" class="block px-3 py-2.5 rounded-xl text-sm font-medium text-stone-700 hover:bg-softpink-50 hover:text-softpink-800">My Skills</a>
+            <a href="#contact" class="block px-3 py-2.5 rounded-xl text-sm font-medium text-stone-700 hover:bg-softpink-50 hover:text-softpink-800">Contact</a>
+            <button onclick="window.print()" class="w-full mt-2 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-gold-400 text-stone-900 text-sm font-bold">
+                <i class="fas fa-print"></i> Cetak / Simpan PDF
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- 1. HERO SECTION (Tagline & CTA) -->
+        <section class="relative overflow-hidden bg-gradient-to-b from-softpink-100/70 via-white to-softpink-50/40 pt-14 pb-20 sm:pt-20 sm:pb-28 border-b border-softpink-200/70">
+            <!-- Aksen Dekoratif Minimalis Soft Pink & Gold -->
+            <div class="absolute top-0 right-0 -mr-24 -mt-24 w-96 h-96 rounded-full bg-gold-200/35 blur-3xl pointer-events-none"></div>
+            <div class="absolute bottom-0 left-0 -ml-24 -mb-24 w-80 h-80 rounded-full bg-softpink-200/50 blur-3xl pointer-events-none"></div>
+
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+                <!-- Badge Status Akademik -->
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-gold-300 text-stone-800 text-xs sm:text-sm font-semibold shadow-sm mb-6">
+                    <span class="w-2 h-2 rounded-full bg-gold-500"></span>
+                    S1 Informatika • Cumlaude (IPK 3,69)
+                </div>
+
+                <!-- Nama & Tagline Utama -->
+                <h1 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold text-stone-900 tracking-tight leading-tight">
+                    Sisilia Putri
+                </h1>
+                
+                <p class="mt-4 font-heading text-xl sm:text-2xl lg:text-3xl font-bold text-softpink-700 max-w-3xl mx-auto leading-snug">
+                    "Menghubungkan Ketelitian Administrasi dengan Inovasi Teknologi &amp; Solusi Berbasis Data."
+                </p>
+
+                <p class="mt-5 text-stone-600 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+                    Lulusan Sarjana Informatika Universitas Potensi Utama dengan rekam jejak di bidang administrasi perkantoran, pengabdian pendidikan, serta pengembangan sistem Internet of Things (IoT).
+                </p>
+
+                <!-- Call to Action (CTA) Buttons -->
+                <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-4 no-print">
+                    <a href="#experience" class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-xl bg-softpink-600 hover:bg-softpink-700 text-white font-semibold text-sm sm:text-base shadow-lg shadow-softpink-600/20 transition-all">
+                        <span>Lihat Pengalaman &amp; Proyek</span>
+                        <i class="fas fa-arrow-right text-gold-200 text-xs"></i>
+                    </a>
+                    <a href="#contact" class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-xl bg-white hover:bg-gold-50 text-stone-800 border-2 border-gold-400 font-semibold text-sm sm:text-base transition-all">
+                        <i class="fas fa-paper-plane text-gold-600 text-sm"></i>
+                        <span>Hubungi Saya</span>
+                    </a>
+                </div>
+
+                <!-- Highlight Metrics Bar -->
+                <div class="mt-14 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-3xl mx-auto">
+                    <div class="bg-white/95 p-4 rounded-2xl border border-softpink-200/80 shadow-sm">
+                        <div class="font-heading text-2xl font-extrabold text-softpink-700">3.69</div>
+                        <div class="text-xs font-medium text-stone-500 mt-0.5">IPK Cumlaude</div>
+                    </div>
+                    <div class="bg-white/95 p-4 rounded-2xl border border-gold-200 shadow-sm">
+                        <div class="font-heading text-2xl font-extrabold text-gold-600">LOA</div>
+                        <div class="text-xs font-medium text-stone-500 mt-0.5">Publikasi Ilmiah 2026</div>
+                    </div>
+                    <div class="bg-white/95 p-4 rounded-2xl border border-softpink-200/80 shadow-sm">
+                        <div class="font-heading text-2xl font-extrabold text-softpink-700">MS Office</div>
+                        <div class="text-xs font-medium text-stone-500 mt-0.5">Tersertifikasi BBPVP</div>
+                    </div>
+                    <div class="bg-white/95 p-4 rounded-2xl border border-gold-200 shadow-sm">
+                        <div class="font-heading text-2xl font-extrabold text-gold-600">Python &amp; IoT</div>
+                        <div class="text-xs font-medium text-stone-500 mt-0.5">ESP32 &amp; Pemrograman</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. ABOUT ME & PENDIDIKAN -->
+        <section id="about" class="py-16 sm:py-24 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+                <!-- Kolom Kiri: Profil Singkat -->
+                <div class="lg:col-span-7 space-y-6">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-widest text-gold-600">About Me</span>
+                        <h2 class="font-heading text-3xl sm:text-4xl font-bold text-stone-900 mt-1">
+                            Profesional Muda yang Teliti, Adaptif &amp; Berorientasi Solusi
+                        </h2>
+                        <div class="w-16 h-1 bg-gradient-to-r from-softpink-500 to-gold-400 rounded-full mt-4"></div>
+                    </div>
+
+                    <div class="space-y-4 text-stone-600 text-base leading-relaxed text-justify">
+                        <p>
+                            Saya adalah lulusan <strong class="text-stone-800">S1 Informatika Universitas Potensi Utama</strong> (2022–2026) dengan IPK <strong class="text-softpink-700">3,69 (Predikat Cumlaude)</strong>. Perjalanan akademik dan profesional saya memadukan ketelitian administrasi perkantoran dengan pemahaman teknis di bidang teknologi informasi.
+                        </p>
+                        <p>
+                            Saya memiliki pengalaman langsung sebagai <strong class="text-stone-800">Staff Administrasi (Tata Usaha)</strong> di Balai Pelatihan dan Penyuluhan Perikanan Medan (BPPP) serta berkontribusi dalam dunia pendidikan melalui program <strong class="text-stone-800">Kampus Mengajar Batch 8</strong> yang diselenggarakan oleh Kemendikbudristek.
+                        </p>
+                        <p>
+                            Selain terampil dalam pengolahan data menggunakan <strong class="text-stone-800">Microsoft Office (Word &amp; Excel)</strong>, saya menguasai dasar pemrograman <strong class="text-stone-800">Python, HTML, CSS, dan Arduino IDE</strong>. Saya merupakan pribadi yang bertanggung jawab, disiplin, memiliki komunikasi yang baik, serta siap memberikan kontribusi positif baik secara individu maupun dalam tim.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Kolom Kanan: Kartu Pendidikan & Sertifikasi -->
+                <div class="lg:col-span-5 space-y-5">
+                    <!-- Kartu Pendidikan -->
+                    <div class="bg-white rounded-2xl p-6 sm:p-7 border border-softpink-200/90 shadow-sm">
+                        <h3 class="font-heading font-bold text-lg text-stone-900 flex items-center gap-2.5 mb-5">
+                            <span class="w-8 h-8 rounded-lg bg-softpink-100 text-softpink-700 border border-softpink-200 flex items-center justify-center text-sm">
+                                <i class="fas fa-graduation-cap"></i>
+                            </span>
+                            Riwayat Pendidikan
+                        </h3>
+
+                        <div class="space-y-5 relative before:content-[''] before:absolute before:left-3.5 before:top-2 before:bottom-2 before:w-0.5 before:bg-softpink-200">
+                            <!-- S1 -->
+                            <div class="relative pl-9">
+                                <span class="absolute left-2 top-1.5 w-3.5 h-3.5 rounded-full bg-gold-400 ring-4 ring-gold-100"></span>
+                                <span class="text-xs font-bold text-gold-700 bg-gold-100 px-2.5 py-0.5 rounded-md">2022 – 2026</span>
+                                <h4 class="font-heading font-bold text-base text-stone-900 mt-1.5">S1 – Informatika</h4>
+                                <p class="text-sm text-stone-600">Universitas Potensi Utama, Medan</p>
+                                <p class="text-xs font-semibold text-softpink-700 mt-1">IPK: 3.69 (Cumlaude)</p>
+                            </div>
+
+                            <!-- SMK -->
+                            <div class="relative pl-9">
+                                <span class="absolute left-2 top-1.5 w-3.5 h-3.5 rounded-full bg-softpink-500 ring-4 ring-softpink-100"></span>
+                                <span class="text-xs font-semibold text-softpink-700 bg-softpink-100 px-2.5 py-0.5 rounded-md">2019 – 2022</span>
+                                <h4 class="font-heading font-bold text-base text-stone-900 mt-1.5">Teknik Komputer dan Jaringan</h4>
+                                <p class="text-sm text-stone-600">SMK Negeri 13 Medan, Sumatera Utara</p>
+                                <p class="text-xs font-medium text-stone-500 mt-1">Nilai Akhir: 85</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Kartu Sertifikasi & Pelatihan Ringkas -->
+                    <div class="bg-gradient-to-br from-softpink-100/90 via-white to-gold-50 rounded-2xl p-6 sm:p-7 border border-gold-300/80 shadow-sm">
+                        <h3 class="font-heading font-bold text-base text-stone-900 flex items-center gap-2 mb-4">
+                            <i class="fas fa-certificate text-gold-600"></i>
+                            Sertifikasi &amp; Pelatihan Utama
+                        </h3>
+                        <ul class="space-y-3 text-xs sm:text-sm text-stone-700">
+                            <li class="flex items-start justify-between gap-2 pb-2.5 border-b border-softpink-200/70">
+                                <span><strong class="text-stone-900">Sertifikat Microsoft Office</strong> – BBPVP Medan</span>
+                                <span class="text-gold-700 font-semibold shrink-0">Okt 2026</span>
+                            </li>
+                            <li class="flex items-start justify-between gap-2 pb-2.5 border-b border-softpink-200/70">
+                                <span><strong class="text-stone-900">Tour Parlement Sidang Paripurna DPRD</strong> – Gen Bright Medan</span>
+                                <span class="text-gold-700 font-semibold shrink-0">Sep 2025</span>
+                            </li>
+                            <li class="flex items-start justify-between gap-2 pb-2.5 border-b border-softpink-200/70">
+                                <span><strong class="text-stone-900">Sertifikat Pemrograman Python</strong> – Univ. Potensi Utama</span>
+                                <span class="text-gold-700 font-semibold shrink-0">Agu 2025</span>
+                            </li>
+                            <li class="flex items-start justify-between gap-2">
+                                <span><strong class="text-stone-900">Pemanfaatan AI untuk Produktivitas</strong> – Univ. Potensi Utama</span>
+                                <span class="text-gold-700 font-semibold shrink-0">Mei 2025</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. EXPERIENCE & PROJECTS (GRID CARD) -->
+        <section id="experience" class="py-16 sm:py-24 bg-white border-y border-softpink-200/70">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
+                    <span class="text-xs font-bold uppercase tracking-widest text-gold-600">Experience &amp; Projects</span>
+                    <h2 class="font-heading text-3xl sm:text-4xl font-bold text-stone-900 mt-1">
+                        Pengalaman Kerja, Pengabdian &amp; Karya Ilmiah
+                    </h2>
+                    <div class="w-16 h-1 bg-gradient-to-r from-softpink-500 to-gold-400 rounded-full mx-auto mt-4"></div>
+                </div>
+
+                <!-- Grid Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+                    
+                    <!-- Card 1: Pengalaman Magang BPPP -->
+                    <article class="group bg-softpink-50/40 hover:bg-white rounded-2xl p-6 sm:p-8 border border-softpink-200/80 hover:border-gold-400 shadow-sm hover:shadow-xl hover:shadow-softpink-200/30 transition-all duration-300 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between gap-3 mb-5">
+                                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-softpink-100 text-softpink-800 border border-softpink-200">
+                                    <i class="fas fa-briefcase text-softpink-600"></i> Pengalaman Kerja
+                                </span>
+                                <span class="text-xs font-semibold text-stone-500">Feb 2025 – Mar 2025</span>
+                            </div>
+
+                            <h3 class="font-heading text-xl font-bold text-stone-900 group-hover:text-softpink-700 transition-colors">
+                                Staff Administrasi (Tata Usaha) – Magang
+                            </h3>
+                            <p class="text-sm font-semibold text-gold-600 mt-1">
+                                Balai Pelatihan dan Penyuluhan Perikanan Medan (BPPP)
+                            </p>
+                            <p class="text-xs text-stone-500 mt-0.5 mb-4">Kota Medan, Sumatera Utara, Indonesia</p>
+
+                            <p class="text-sm text-stone-600 leading-relaxed">
+                                Melaksanakan kegiatan magang pada bagian Tata Usaha dengan membantu pekerjaan administrasi perkantoran, pengelolaan dan pengarsipan dokumen, penyusunan data, serta mendukung kelancaran operasional administrasi dengan ketelitian dan kedisiplinan tinggi.
+                            </p>
+                        </div>
+
+                        <div class="mt-6 pt-4 border-t border-softpink-200/70 flex flex-wrap gap-2">
+                            <span class="px-2.5 py-1 rounded-lg bg-white border border-softpink-200 text-xs font-medium text-stone-700">Administrasi Perkantoran</span>
+                            <span class="px-2.5 py-1 rounded-lg bg-white border border-softpink-200 text-xs font-medium text-stone-700">Pengarsipan Dokumen</span>
+                            <span class="px-2.5 py-1 rounded-lg bg-white border border-softpink-200 text-xs font-medium text-stone-700">Microsoft Office</span>
+                        </div>
+                    </article>
+
+                    <!-- Card 2: Kampus Mengajar Batch 8 -->
+                    <article class="group bg-softpink-50/40 hover:bg-white rounded-2xl p-6 sm:p-8 border border-softpink-200/80 hover:border-gold-400 shadow-sm hover:shadow-xl hover:shadow-softpink-200/30 transition-all duration-300 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between gap-3 mb-5">
+                                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-softpink-100 text-softpink-800 border border-softpink-200">
+                                    <i class="fas fa-chalkboard-teacher text-softpink-600"></i> Pengalaman Mengajar
+                                </span>
+                                <span class="text-xs font-semibold text-stone-500">Sep 2024 – Des 2024</span>
+                            </div>
+
+                            <h3 class="font-heading text-xl font-bold text-stone-900 group-hover:text-softpink-700 transition-colors">
+                                Asisten Pengajar – Kampus Mengajar Batch 8
+                            </h3>
+                            <p class="text-sm font-semibold text-gold-600 mt-1">
+                                Kementerian Pendidikan, Kebudayaan, Riset dan Teknologi
+                            </p>
+                            <p class="text-xs text-stone-500 mt-0.5 mb-4">Kota Medan, Sumatera Utara, Indonesia</p>
+
+                            <p class="text-sm text-stone-600 leading-relaxed">
+                                Mengikuti program pengabdian pendidikan dengan membantu proses pembelajaran di sekolah, mendukung penguatan literasi dan numerasi siswa, berkolaborasi bersama tenaga pendidik, serta berpartisipasi dalam administrasi sekolah.
+                            </p>
+                        </div>
+
+                        <div class="mt-6 pt-4 border-t border-softpink-200/70 flex flex-wrap gap-2">
+                            <span class="px-2.5 py-1 rounded-lg bg-white border border-softpink-200 text-xs font-medium text-stone-700">Literasi &amp; Numerasi</span>
+                            <span class="px-2.5 py-1 rounded-lg bg-white border border-softpink-200 text-xs font-medium text-stone-700">Public Speaking</span>
+                            <span class="px-2.5 py-1 rounded-lg bg-white border border-softpink-200 text-xs font-medium text-stone-700">Kolaborasi Tim</span>
+                        </div>
+                    </article>
+
+                    <!-- Card 3: Publikasi Karya Tulis Ilmiah (LOA) -->
+                    <article class="group bg-softpink-50/40 hover:bg-white rounded-2xl p-6 sm:p-8 border border-softpink-200/80 hover:border-gold-400 shadow-sm hover:shadow-xl hover:shadow-softpink-200/30 transition-all duration-300 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between gap-3 mb-5">
+                                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-gold-100 text-gold-700 border border-gold-300">
+                                    <i class="fas fa-award text-gold-600"></i> Publikasi Ilmiah
+                                </span>
+                                <span class="text-xs font-semibold text-stone-500">16 November 2026</span>
+                            </div>
+
+                            <h3 class="font-heading text-xl font-bold text-stone-900 group-hover:text-softpink-700 transition-colors">
+                                Publikasi Karya Tulis Ilmiah (Accepted LOA)
+                            </h3>
+                            <p class="text-sm font-semibold text-gold-600 mt-1">
+                                "Simulasi Pemantauan Real-Time Muka Air Laut Berbasis IoT Menggunakan Mikrokontroler ESP32"
+                            </p>
+
+                            <p class="text-sm text-stone-600 leading-relaxed mt-3">
+                                Berhasil menyusun dan mengajukan artikel ilmiah bersama Muhammad Sadikin. Artikel telah melalui proses penilaian ketat oleh tim reviewer dan dinyatakan diterima (<strong>Accepted</strong>) berdasarkan Letter of Acceptance (LOA).
+                            </p>
+                        </div>
+
+                        <div class="mt-6 pt-4 border-t border-softpink-200/70 flex flex-wrap gap-2">
+                            <span class="px-2.5 py-1 rounded-lg bg-white border border-gold-200 text-xs font-medium text-stone-700">Peer-Reviewed</span>
+                            <span class="px-2.5 py-1 rounded-lg bg-white border border-gold-200 text-xs font-medium text-stone-700">Riset IoT</span>
+                            <span class="px-2.5 py-1 rounded-lg bg-white border border-gold-200 text-xs font-medium text-stone-700">ESP32</span>
+                        </div>
+                    </article>
+
+                    <!-- Card 4: Proyek Skripsi IoT & Android -->
+                    <article class="group bg-softpink-50/40 hover:bg-white rounded-2xl p-6 sm:p-8 border border-softpink-200/80 hover:border-gold-400 shadow-sm hover:shadow-xl hover:shadow-softpink-200/30 transition-all duration-300 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between gap-3 mb-5">
+                                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-gold-100 text-gold-700 border border-gold-300">
+                                    <i class="fas fa-microchip text-gold-600"></i> Proyek Teknologi
+                                </span>
+                                <span class="text-xs font-semibold text-stone-500">Tahun 2026</span>
+                            </div>
+
+                            <h3 class="font-heading text-xl font-bold text-stone-900 group-hover:text-softpink-700 transition-colors">
+                                Sistem Pemantauan Kenaikan Air Laut Berbasis IoT &amp; Android
+                            </h3>
+                            <p class="text-sm font-semibold text-gold-600 mt-1">
+                                Penelitian Tugas Akhir (Skripsi) – S1 Informatika
+                            </p>
+
+                            <p class="text-sm text-stone-600 leading-relaxed mt-3">
+                                Merancang sistem simulasi pemantauan perubahan ketinggian air laut secara <em>real-time</em> menggunakan mikrokontroler <strong>ESP32</strong> dan <strong>Sensor Ultrasonik HC-SR04</strong> yang terintegrasi dengan aplikasi <strong>Android</strong> untuk menampilkan informasi status air.
+                            </p>
+                        </div>
+
+                        <div class="mt-6 pt-4 border-t border-softpink-200/70 flex flex-wrap gap-2">
+                            <span class="px-2.5 py-1 rounded-lg bg-white border border-gold-200 text-xs font-medium text-stone-700">Arduino IDE</span>
+                            <span class="px-2.5 py-1 rounded-lg bg-white border border-gold-200 text-xs font-medium text-stone-700">Sensor HC-SR04</span>
+                            <span class="px-2.5 py-1 rounded-lg bg-white border border-gold-200 text-xs font-medium text-stone-700">Integrasi Android</span>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. MY SKILLS (BADGE SYSTEM) -->
+        <section id="skills" class="py-16 sm:py-24 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-xs font-bold uppercase tracking-widest text-gold-600">My Skills</span>
+                <h2 class="font-heading text-3xl sm:text-4xl font-bold text-stone-900 mt-1">
+                    Keahlian &amp; Kompetensi
+                </h2>
+                <p class="text-sm sm:text-base text-stone-600 mt-3">
+                    Kombinasi kemampuan administrasi perkantoran, penguasaan perangkat lunak, teknologi IoT, serta keterampilan interpersonal.
+                </p>
+                <div class="w-16 h-1 bg-gradient-to-r from-softpink-500 to-gold-400 rounded-full mx-auto mt-4"></div>
+            </div>
+
+            <div class="space-y-8">
+                <!-- Kategori 1: Administrasi & Perkantoran -->
+                <div class="bg-white rounded-2xl p-6 sm:p-8 border border-softpink-200/80 shadow-sm">
+                    <h3 class="font-heading font-bold text-base sm:text-lg text-stone-900 mb-4 flex items-center gap-2.5">
+                        <span class="w-2.5 h-2.5 rounded-full bg-softpink-500"></span>
+                        Administrasi &amp; Operasional Perkantoran
+                    </h3>
+                    <div class="flex flex-wrap gap-2.5">
+                        <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-softpink-50 text-softpink-900 border border-softpink-200 text-xs sm:text-sm font-semibold">
+                            <i class="fas fa-file-word text-softpink-600"></i> Microsoft Office (Word &amp; Excel)
+                        </span>
+                        <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-softpink-50 text-softpink-900 border border-softpink-200 text-xs sm:text-sm font-semibold">
+                            <i class="fas fa-folder-open text-softpink-600"></i> Staff Administrasi &amp; Tata Usaha
+                        </span>
+                        <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-softpink-50 text-softpink-900 border border-softpink-200 text-xs sm:text-sm font-semibold">
+                            <i class="fas fa-archive text-softpink-600"></i> Pengarsipan Dokumen
+                        </span>
+                        <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-softpink-50 text-softpink-900 border border-softpink-200 text-xs sm:text-sm font-semibold">
+                            <i class="fas fa-table text-softpink-600"></i> Pengolahan Data &amp; Operasional
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Kategori 2: Teknologi, Pemrograman & Desain -->
+                <div class="bg-white rounded-2xl p-6 sm:p-8 border border-gold-200 shadow-sm">
+                    <h3 class="font-heading font-bold text-base sm:text-lg text-stone-900 mb-4 flex items-center gap-2.5">
+                        <span class="w-2.5 h-2.5 rounded-full bg-gold-500"></span>
+                        Teknologi Informasi, IoT &amp; Desain Digital
+                    </h3>
+                    <div class="flex flex-wrap gap-2.5">
+                        <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold-50 text-stone-900 border border-gold-300 text-xs sm:text-sm font-semibold">
+                            <i class="fas fa-microchip text-gold-600"></i> Internet of Things (ESP32 &amp; HC-SR04)
+                        </span>
+                        <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold-50 text-stone-900 border border-gold-300 text-xs sm:text-sm font-semibold">
+                            <i class="fas fa-code-branch text-gold-600"></i> Arduino IDE
+                        </span>
+                        <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold-50 text-stone-900 border border-gold-300 text-xs sm:text-sm font-semibold">
+                            <i class="fab fa-python text-gold-600"></i> Dasar Pemrograman Python
+                        </span>
+                        <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold-50 text-stone-900 border border-gold-300 text-xs sm:text-sm font-semibold">
+                            <i class="fas fa-code text-gold-600"></i> HTML &amp; CSS
+                        </span>
+                        <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold-50 text-stone-900 border border-gold-300 text-xs sm:text-sm font-semibold">
+                            <i class="fas fa-palette text-gold-600"></i> Canva &amp; Produk Digital
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Kategori 3: Soft Skills -->
+                <div class="bg-white rounded-2xl p-6 sm:p-8 border border-softpink-200/80 shadow-sm">
+                    <h3 class="font-heading font-bold text-base sm:text-lg text-stone-900 mb-4 flex items-center gap-2.5">
+                        <span class="w-2.5 h-2.5 rounded-full bg-softpink-400"></span>
+                        Soft Skills &amp; Kepemimpinan
+                    </h3>
+                    <div class="flex flex-wrap gap-2.5">
+                        <span class="px-4 py-2 rounded-full bg-stone-50 text-stone-800 border border-stone-200 text-xs sm:text-sm font-medium">Berorientasi pada Detail</span>
+                        <span class="px-4 py-2 rounded-full bg-stone-50 text-stone-800 border border-stone-200 text-xs sm:text-sm font-medium">Problem Solving</span>
+                        <span class="px-4 py-2 rounded-full bg-stone-50 text-stone-800 border border-stone-200 text-xs sm:text-sm font-medium">Public Speaking &amp; Komunikasi</span>
+                        <span class="px-4 py-2 rounded-full bg-stone-50 text-stone-800 border border-stone-200 text-xs sm:text-sm font-medium">Pelayanan &amp; Customer Service</span>
+                        <span class="px-4 py-2 rounded-full bg-stone-50 text-stone-800 border border-stone-200 text-xs sm:text-sm font-medium">Team Leadership</span>
+                        <span class="px-4 py-2 rounded-full bg-stone-50 text-stone-800 border border-stone-200 text-xs sm:text-sm font-medium">Manajemen Waktu (Time Management)</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. CONTACT SECTION -->
+        <section id="contact" class="py-16 sm:py-24 bg-gradient-to-br from-softpink-100/80 via-softpink-50 to-gold-50/70 border-t border-softpink-200/80">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                    <!-- Informasi Kontak -->
+                    <div class="lg:col-span-6 space-y-6">
+                        <div>
+                            <span class="text-xs font-bold uppercase tracking-widest text-gold-600">Contact</span>
+                            <h2 class="font-heading text-3xl sm:text-4xl font-bold text-stone-900 mt-1">
+                                Mari Terhubung &amp; Berkolaborasi
+                            </h2>
+                            <div class="w-16 h-1 bg-gradient-to-r from-softpink-500 to-gold-400 rounded-full mt-4"></div>
+                        </div>
+
+                        <p class="text-stone-600 text-sm sm:text-base leading-relaxed">
+                            Saya terbuka untuk peluang karier di bidang administrasi perkantoran, pengolahan data, maupun teknologi informasi. Silakan hubungi saya melalui kontak berikut:
+                        </p>
+
+                        <div class="space-y-4 pt-2">
+                            <!-- Email -->
+                            <div class="flex items-center justify-between p-4 rounded-2xl bg-white border border-softpink-200 shadow-sm">
+                                <div class="flex items-center gap-3.5">
+                                    <div class="w-10 h-10 rounded-xl bg-softpink-100 text-softpink-700 flex items-center justify-center shrink-0">
+                                        <i class="fas fa-envelope"></i>
+                                    </div>
+                                    <div>
+                                        <div class="text-xs text-stone-500">Email</div>
+                                        <a href="mailto:sisiliaputri233@gmail.com" class="text-sm sm:text-base font-semibold text-stone-900 hover:text-softpink-700 transition-colors">
+                                            sisiliaputri233@gmail.com
+                                        </a>
+                                    </div>
+                                </div>
+                                <button onclick="copyText('sisiliaputri233@gmail.com', 'Alamat email disalin!')" aria-label="Salin Email" class="p-2.5 rounded-xl bg-softpink-50 hover:bg-gold-400 hover:text-stone-900 text-softpink-700 transition-colors no-print">
+                                    <i class="far fa-copy"></i>
+                                </button>
+                            </div>
+
+                            <!-- Telepon / WhatsApp -->
+                            <div class="flex items-center justify-between p-4 rounded-2xl bg-white border border-softpink-200 shadow-sm">
+                                <div class="flex items-center gap-3.5">
+                                    <div class="w-10 h-10 rounded-xl bg-gold-100 text-gold-700 flex items-center justify-center shrink-0">
+                                        <i class="fas fa-phone-alt"></i>
+                                    </div>
+                                    <div>
+                                        <div class="text-xs text-stone-500">Telepon / WhatsApp</div>
+                                        <a href="https://wa.me/6289654179491" target="_blank" rel="noopener noreferrer" class="text-sm sm:text-base font-semibold text-stone-900 hover:text-softpink-700 transition-colors">
+                                            0896-5417-9491
+                                        </a>
+                                    </div>
+                                </div>
+                                <button onclick="copyText('089654179491', 'Nomor telepon disalin!')" aria-label="Salin Nomor Telepon" class="p-2.5 rounded-xl bg-softpink-50 hover:bg-gold-400 hover:text-stone-900 text-softpink-700 transition-colors no-print">
+                                    <i class="far fa-copy"></i>
+                                </button>
+                            </div>
+
+                            <!-- Alamat -->
+                            <div class="flex items-start gap-3.5 p-4 rounded-2xl bg-white border border-softpink-200 shadow-sm">
+                                <div class="w-10 h-10 rounded-xl bg-softpink-100 text-softpink-700 flex items-center justify-center shrink-0 mt-0.5">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <div class="text-xs text-stone-500">Domisili</div>
+                                    <p class="text-sm font-medium text-stone-800 leading-snug mt-0.5">
+                                        Jalan Chaidir Lingkungan III Blok C No. 34 KNI, Kota Medan, Sumatera Utara
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Form Kirim Pesan Langsung ke WhatsApp -->
+                    <div class="lg:col-span-6 no-print">
+                        <form id="contact-form" class="bg-white text-stone-800 rounded-3xl p-6 sm:p-8 border border-gold-300/80 shadow-xl shadow-softpink-200/40 space-y-4">
+                            <h3 class="font-heading font-bold text-xl text-stone-900">Kirim Pesan Cepat</h3>
+                            <p class="text-xs text-stone-500">Pesan Anda akan langsung diarahkan ke WhatsApp Sisilia Putri.</p>
+
+                            <div>
+                                <label for="sender-name" class="block text-xs font-semibold text-stone-700 mb-1.5">Nama Anda / Perusahaan</label>
+                                <input type="text" id="sender-name" required placeholder="Contoh: HRD PT Maju Bersama" class="w-full px-4 py-2.5 rounded-xl border border-softpink-200 focus:border-softpink-500 focus:ring-2 focus:ring-softpink-500/20 outline-none text-sm">
+                            </div>
+
+                            <div>
+                                <label for="sender-subject" class="block text-xs font-semibold text-stone-700 mb-1.5">Keperluan</label>
+                                <select id="sender-subject" class="w-full px-4 py-2.5 rounded-xl border border-softpink-200 focus:border-softpink-500 focus:ring-2 focus:ring-softpink-500/20 outline-none text-sm bg-white">
+                                    <option value="Undangan Wawancara Kerja">Undangan Wawancara Kerja</option>
+                                    <option value="Penawaran Proyek / Kolaborasi">Penawaran Proyek / Kolaborasi</option>
+                                    <option value="Pertanyaan Seputar CV">Pertanyaan Seputar CV</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label for="sender-message" class="block text-xs font-semibold text-stone-700 mb-1.5">Pesan</label>
+                                <textarea id="sender-message" rows="3" required placeholder="Tuliskan pesan singkat Anda di sini..." class="w-full px-4 py-2.5 rounded-xl border border-softpink-200 focus:border-softpink-500 focus:ring-2 focus:ring-softpink-500/20 outline-none text-sm"></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full py-3.5 px-6 rounded-xl bg-softpink-600 hover:bg-softpink-700 text-white font-bold text-sm shadow-md shadow-softpink-600/20 transition-all flex items-center justify-center gap-2 border border-gold-300/40">
+                                <i class="fab fa-whatsapp text-base text-gold-200"></i>
+                                <span>Kirim via WhatsApp</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-white text-stone-500 py-8 border-t border-softpink-200/80 text-center text-xs">
+        <div class="max-w-6xl mx-auto px-4">
+            <p class="font-semibold text-stone-800">&copy; 2026 Sisilia Putri. All Rights Reserved.</p>
+            <p class="mt-1 text-gold-700 font-medium">S1 Informatika • Universitas Potensi Utama Medan</p>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT INTERAKTIVITAS -->
+    <script>
+        // 1. Toggle Mobile Menu
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // 2. Fungsi Copy Text & Notifikasi Toast
+        function copyText(text, message) {
+            const tempInput = document.createElement('input');
+            tempInput.value = text;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            try {
+                document.execCommand('copy');
+                showToast(message);
+            } catch (err) {
+                showToast('Gagal menyalin teks.');
+            }
+            document.body.removeChild(tempInput);
+        }
+
+        function showToast(msg) {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = 'flex items-center gap-2.5 px-4 py-3 rounded-xl bg-stone-900 border border-gold-400 text-white text-xs sm:text-sm font-medium shadow-xl transition-all duration-300 translate-y-2 opacity-0';
+            toast.innerHTML = `<i class="fas fa-check-circle text-gold-400"></i><span>${msg}</span>`;
+            container.appendChild(toast);
+
+            requestAnimationFrame(() => {
+                toast.classList.remove('translate-y-2', 'opacity-0');
+            });
+
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-2');
+                setTimeout(() => toast.remove(), 300);
+            }, 2600);
+        }
+
+        // 3. Handler Form Kontak ke WhatsApp
+        const contactForm = document.getElementById('contact-form');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('sender-name').value.trim();
+            const subject = document.getElementById('sender-subject').value;
+            const message = document.getElementById('sender-message').value.trim();
+
+            const waText = `Halo Sisilia Putri,%0A%0ASaya *${encodeURIComponent(name)}* ingin menghubungi terkait *${encodeURIComponent(subject)}*.%0A%0A${encodeURIComponent(message)}`;
+            window.open(`https://wa.me/6289654179491?text=${waText}`, '_blank', 'noopener,noreferrer');
+            showToast('Membuka WhatsApp...');
+        });
+    </script>
+</body>
+</html>
